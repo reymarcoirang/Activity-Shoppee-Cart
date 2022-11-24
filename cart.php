@@ -11,7 +11,7 @@
         [
             'name' => "Gucci Shirt",
             'description' => "Dolore temporibus deleniti ipsam nostrum enim dolorem accusantium commodi ullam consequuntur iure. Nesciunt esse ad inventore eos earum rerum assumenda et beatae animi, temporibus itaque repudiandae voluptas eum corrupti aut atque facere",
-            'price' => "2,000",
+            'price' => "2000",
             'photo1' => "picture2.1.jpg",
             'photo2' => "picture2.2.jpg",
         ],
@@ -19,7 +19,7 @@
         
             'name' => "Polo Shirt",
             'description' => "Maiores consequatur aliquid at, iste labore delectus alias ipsa. Alias, sed veritatis fuga asperiores quasi, ipsum corrupti dolores quis animi inventore tenetur illum! Animi veniam rerum et quisquam vero aliquam, sapiente repudiandae fugiat cumque! Ducimus",
-            'price' => "2,500",
+            'price' => "2500",
             'photo1' => "picture3.1.jpg",
             'photo2' => "picture3.2.jpg",
         
@@ -34,14 +34,14 @@
         [
             'name' => "Sling Bag",
             'description' => "Sequi blanditiis reprehenderit repudiandae vel explicabo voluptas voluptatibus veritatis? Corrupti saepe rem autem omnis labore nobis nam sunt quos asperiores neque reprehenderit accusantium",
-            'price' => "2,500",
+            'price' => "2500",
             'photo1' => "picture5.1.jpg",
             'photo2' => "picture5.2.jpg",
         ],
         [
             'name' => "Jogger",
             'description' => "Sequi blanditiis reprehenderit repudiandae vel explicabo voluptas voluptatibus veritatis? Corrupti saepe rem autem omnis labore nobis nam sunt quos asperiores neque reprehenderit accusantium",
-            'price' => "1,000",
+            'price' => "1000",
             'photo1' => "picture6.1.jpg",
             'photo2' => "picture6.2.jpg",
         ],
@@ -55,19 +55,24 @@
         [
             'name' => "Lebron Jersey",
             'description' => "Sequi blanditiis reprehenderit repudiandae vel explicabo voluptas voluptatibus veritatis? Corrupti saepe rem autem omnis labore nobis nam sunt quos asperiores neque reprehenderit accusantium",
-            'price' => "5,000",
+            'price' => "5000",
             'photo1' => "picture8.1.jpg",
             'photo2' => "picture8.2.jpg",
         ],
 
 
     ];
-    $amount = 0;
+    $sub_total = 0;
     $itemQTYCount = 0;
-    $itemID = 0;
-    $itemSize = "";
-    $itemQty = 0;
+    $product_id = 0;
+    $product_qty = 0;
     $itemTotal = 0;
+    if(isset($_POST['btnUpdate'])){
+        foreach($_POST['inputQTY'] as $key => $value){
+            $cartQTYCount = $key + 1;
+            $_SESSION['cartItems'][$cartQTYCount]['qty'] = $value;
+        }
+    }
 
 ?>
 
@@ -97,6 +102,8 @@
         </div>
         <div class="row mt-3">
             <div class="col-12">
+            <form action="" method="post">
+
                 <div class="table-responsive">
                     <?php if (count($_SESSION['cartItems']) > 0): ?>
 
@@ -113,26 +120,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach($_SESSION['cartItems'] as $key => $value){
-                                        $itemID = $_SESSION['cartItems'][$key]['id'];
-                                        $itemSize =  $_SESSION['cartItems'][$key]['size'];
-                                        $itemQty = $_SESSION['cartItems'][$key]['qty'];
-                                        $itemTotal = $arrProducts[$itemID]['price'] * $itemQty;
-                                        $itemQTYCount += $itemQty;
+                                <?php foreach($_SESSION['cartItems'] as $key => $value){    
+                                        $product_id = $_SESSION['cartItems'][$key]['id'];
+                                        $product_qty =  $_SESSION['cartItems'][$key]['qty'];
+                                        $product_total = $arrProducts[$product_id]['price'] * $product_qty;
+                                        $itemQTYCount = $itemQTYCount + $product_qty;
+                                        $sub_total = $sub_total + $product_total;
 
                                         echo '
                                         <tr>
-                                            <td><img style="width: 2em" src="./img/Picture/' . $arrProducts[$itemID]['photo1'] . '"/></td>
-                                            <td>' . $arrProducts[$itemID]['name'] . '</td>
-                                            <td class="text-center">' . $itemSize . '</td>
-                                            <td class="text-center"><input class="text-center" name="numQTY' . $key . '" class="form-control text-center" type="number" min="1" max="100" value="'.  $itemQty . ' "></td>
-                                            <td class="text-center" >₱ ' . $arrProducts[$itemID]['price'] . ' </td>
-                                            <td class="text-center">₱ ' . $itemTotal .'</td>
-                                            <td class="text-center"><a class="btn btn-sm btn-danger" href="remove-confirm.php?cartID=' . $key . '&qty=' . $itemQty .'"><i class="fa fa-trash"></i> </a> </td>
+                                            <td><img style="width: 2em" src="./img/Picture/' . $arrProducts[$product_id]['photo1'] . '"/></td>
+                                            <td>' . $arrProducts[$product_id]['name'] . '</td>
+                                            <td class="text-center">' . $_SESSION['cartItems'][$key]['size'] . '</td>
+                                            <td class="text-center"><input class="text-center" name="inputQTY[]" type="number" min="1" max="100" value="'.  $product_qty . '"></td>
+                                            <td class="text-center" >₱ ' . $arrProducts[$product_id]['price'] . ' </td>
+                                            <td class="text-center">₱ ' . $product_total .'</td>
+                                            <td class="text-center"><a class="btn btn-sm btn-danger" href="remove-confirm.php?cartID=' . $key . '&qty=' . $product_qty .'"><i class="fa fa-trash"></i> </a> </td>
                                         </tr>
                                         ';
-                                        $amount += $itemTotal;
                                     }
+                                    
                                 ?>
                         
                                 <tr>
@@ -141,7 +148,7 @@
                                     <td class="text-center"><strong>Total</strong></td>
                                     <td class="text-center"><?php echo $itemQTYCount;?></td>
                                     <td class="text-center">----</td>
-                                    <td class="text-center"><strong>₱ <?php echo $amount;?></strong></td>
+                                    <td class="text-center"><strong>₱ <?php echo  $sub_total?></strong></td>
                                     <td class="text-center">----</td>
 
                                 </tr>
@@ -149,7 +156,6 @@
                         </table>
                     </div>
                 </div>
-                <!-- Footer button -->
                 <div class="col mb-2">
                     <div class="row">
                         <form class="form-inline w-100" method="post">
@@ -174,6 +180,7 @@
                         </form>
                     </div>
                 </div>
+            </form>
             <?php else: ?> 
                 <table class="table table-striped">
                     <thead>

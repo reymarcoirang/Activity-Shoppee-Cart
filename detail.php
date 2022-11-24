@@ -11,7 +11,7 @@
         [
             'name' => "Gucci Shirt",
             'description' => "Dolore temporibus deleniti ipsam nostrum enim dolorem accusantium commodi ullam consequuntur iure. Nesciunt esse ad inventore eos earum rerum assumenda et beatae animi, temporibus itaque repudiandae voluptas eum corrupti aut atque facere",
-            'price' => "2,000",
+            'price' => "2000",
             'photo1' => "picture2.1.jpg",
             'photo2' => "picture2.2.jpg",
         ],
@@ -19,7 +19,7 @@
         
             'name' => "Polo Shirt",
             'description' => "Maiores consequatur aliquid at, iste labore delectus alias ipsa. Alias, sed veritatis fuga asperiores quasi, ipsum corrupti dolores quis animi inventore tenetur illum! Animi veniam rerum et quisquam vero aliquam, sapiente repudiandae fugiat cumque! Ducimus",
-            'price' => "2,500",
+            'price' => "2500",
             'photo1' => "picture3.1.jpg",
             'photo2' => "picture3.2.jpg",
         
@@ -34,14 +34,14 @@
         [
             'name' => "Sling Bag",
             'description' => "Sequi blanditiis reprehenderit repudiandae vel explicabo voluptas voluptatibus veritatis? Corrupti saepe rem autem omnis labore nobis nam sunt quos asperiores neque reprehenderit accusantium",
-            'price' => "2,500",
+            'price' => "2500",
             'photo1' => "picture5.1.jpg",
             'photo2' => "picture5.2.jpg",
         ],
         [
             'name' => "Jogger",
             'description' => "Sequi blanditiis reprehenderit repudiandae vel explicabo voluptas voluptatibus veritatis? Corrupti saepe rem autem omnis labore nobis nam sunt quos asperiores neque reprehenderit accusantium",
-            'price' => "1,000",
+            'price' => "1000",
             'photo1' => "picture6.1.jpg",
             'photo2' => "picture6.2.jpg",
         ],
@@ -55,24 +55,29 @@
         [
             'name' => "Lebron Jersey",
             'description' => "Sequi blanditiis reprehenderit repudiandae vel explicabo voluptas voluptatibus veritatis? Corrupti saepe rem autem omnis labore nobis nam sunt quos asperiores neque reprehenderit accusantium",
-            'price' => "5,000",
+            'price' => "5000",
             'photo1' => "picture8.1.jpg",
             'photo2' => "picture8.2.jpg",
         ],
 
 
     ];
+    if(isset( $_SESSION['cartCount'])){
+        $CarCount = $_SESSION['cartCount'];
+    } 
     if(isset($_POST['btnConfirm'])){
         $CarCount++;        
         $_SESSION['cartItems'][$CarCount]['id'] = $_GET['pid'];
         $_SESSION['cartItems'][$CarCount]['size'] = $_POST['radSize'];
-        $_SESSION['cartItems'][$CarCount]['qty'] = $_POST['inputQTY'];
-        $_SESSION['cartCount'] = $CarCount;        
+        $_SESSION['cartItems'][$CarCount]['qty'] = $_POST['inputQT'];
+        $_SESSION['cartCount'] = $CarCount;
+  
         header("Location: confirm.php");
     }
     else if(isset($_POST['btnCancel'])){
         header("Location: index.php");
     }
+    
 ?>
 
 <!DOCTYPE html>
@@ -81,10 +86,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/ShoppingCart.css">
-    <title>Product Detail</title>
+    <title>Shoppee Cart</title>
 </head>
 <body>
     <div class="container">
@@ -126,13 +131,13 @@
                     </div>
                     <hr>
                     <h5>Enter Quantity:</h5>
-                    <input class="form-control" name="inputQTY" type="number" placeholder="" min="1" max="100" value="1">
+                    <input class="form-control" name="inputQT" type="number" placeholder="" min="1" max="100" value="1">
                     <div class="my-3">
                         <button name="btnConfirm"class="btn btn-dark">
                             <i class="fa-solid fa-circle-check"></i>
                             Confirm Product Purchase
                         </button>
-                        <button name="btnCancel" class="btn btn-danger">Cancel/Go Back</button>
+                        <a href="index.php"name="btnCancel" class="btn btn-danger">Cancel/Go Back</button>
                     </div>
                 </form>
 
