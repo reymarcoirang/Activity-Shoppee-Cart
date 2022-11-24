@@ -1,5 +1,6 @@
 <?php
     session_start();
+
     $arrProducts = [
         [
             'name' => "Adidas Shirt",
@@ -11,7 +12,7 @@
         [
             'name' => "Gucci Shirt",
             'description' => "Dolore temporibus deleniti ipsam nostrum enim dolorem accusantium commodi ullam consequuntur iure. Nesciunt esse ad inventore eos earum rerum assumenda et beatae animi, temporibus itaque repudiandae voluptas eum corrupti aut atque facere",
-            'price' => "2,000",
+            'price' => "2000",
             'photo1' => "picture2.1.jpg",
             'photo2' => "picture2.2.jpg",
         ],
@@ -19,7 +20,7 @@
         
             'name' => "Polo Shirt",
             'description' => "Maiores consequatur aliquid at, iste labore delectus alias ipsa. Alias, sed veritatis fuga asperiores quasi, ipsum corrupti dolores quis animi inventore tenetur illum! Animi veniam rerum et quisquam vero aliquam, sapiente repudiandae fugiat cumque! Ducimus",
-            'price' => "2,500",
+            'price' => "2500",
             'photo1' => "picture3.1.jpg",
             'photo2' => "picture3.2.jpg",
         
@@ -34,14 +35,14 @@
         [
             'name' => "Sling Bag",
             'description' => "Sequi blanditiis reprehenderit repudiandae vel explicabo voluptas voluptatibus veritatis? Corrupti saepe rem autem omnis labore nobis nam sunt quos asperiores neque reprehenderit accusantium",
-            'price' => "2,500",
+            'price' => "2500",
             'photo1' => "picture5.1.jpg",
             'photo2' => "picture5.2.jpg",
         ],
         [
             'name' => "Jogger",
             'description' => "Sequi blanditiis reprehenderit repudiandae vel explicabo voluptas voluptatibus veritatis? Corrupti saepe rem autem omnis labore nobis nam sunt quos asperiores neque reprehenderit accusantium",
-            'price' => "1,000",
+            'price' => "1000",
             'photo1' => "picture6.1.jpg",
             'photo2' => "picture6.2.jpg",
         ],
@@ -55,7 +56,7 @@
         [
             'name' => "Lebron Jersey",
             'description' => "Sequi blanditiis reprehenderit repudiandae vel explicabo voluptas voluptatibus veritatis? Corrupti saepe rem autem omnis labore nobis nam sunt quos asperiores neque reprehenderit accusantium",
-            'price' => "5,000",
+            'price' => "5000",
             'photo1' => "picture8.1.jpg",
             'photo2' => "picture8.2.jpg",
         ],
@@ -83,10 +84,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/ShoppingCart.css">
-    <title>Product Remove</title>
+    <title>Shoppee Cart</title>
 </head>
 <body>
     <div class="container">
@@ -106,8 +107,8 @@
                 <div class="product-grid2 card">
                     <div class="product-image2">
                         <a href="#">
-                            <img class="pic-1" src="img/<?php echo $arrProducts[$itemID]['photo1']?>">
-                            <img class="pic-2" src="img/<?php echo $arrProducts[$itemID]['photo2']?>">
+                            <img class="pic-1" src="img/Picture/<?php echo $arrProducts[$itemID]['photo1']?>">
+                            <img class="pic-2" src="img/Picture/<?php echo $arrProducts[$itemID]['photo2']?>">
                         </a>
                     </div>
                 </div>
